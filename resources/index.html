@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>绿色行动 - 环保公益平台</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<!-- 登录/注册模态框 -->
+<div class="modal" id="loginModal">
+    <div class="modal-content">
+        <span class="close-modal" id="closeModal">&times;</span>
+        <div class="modal-header">
+            <img src="img/logo-green.png" alt="logo" class="logo-img">
+            <h2>绿色行动</h2>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" data-tab="login">登录</div>
+            <div class="tab" data-tab="register">注册</div>
+        </div>
+
+        <!-- 登录表单 -->
+        <div class="tab-content active" id="loginTab">
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">用户名</label>
+                    <input type="text" id="username" class="form-control" required>
+                    <div class="error-message" id="usernameError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="password">密码</label>
+                    <input type="password" id="password" class="form-control" required>
+                    <div class="error-message" id="passwordError"></div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">登录</button>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <p>测试账号：管理员(admin/admin123) 用户(testuser/user123)</p>
+            </div>
+        </div>
+
+        <!-- 注册表单 -->
+        <div class="tab-content" id="registerTab">
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="regUsername">用户名</label>
+                    <input type="text" id="regUsername" class="form-control" required>
+                    <div class="error-message" id="regUsernameError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="regEmail">邮箱</label>
+                    <input type="email" id="regEmail" class="form-control" required>
+                    <div class="error-message" id="regEmailError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="regFullName">姓名</label>
+                    <input type="text" id="regFullName" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPhone">电话</label>
+                    <input type="tel" id="regPhone" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">密码</label>
+                    <input type="password" id="regPassword" class="form-control" required>
+                    <div class="error-message" id="regPasswordError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="regConfirmPassword">确认密码</label>
+                    <input type="password" id="regConfirmPassword" class="form-control" required>
+                    <div class="error-message" id="regConfirmPasswordError"></div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">注册</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- 头部 -->
+<header>
+    <div class="container">
+        <div class="header-content">
+           
+            <div class="logo">
+                <img src="img/logo-green.png" alt="logo" class="logo-img"> 绿色行动</div>
+            <div class="nav-links">
+                <a href="#" class="nav-link active" data-page="home">首页</a>
+                <a href="#" class="nav-link" data-page="activities">环保活动</a>
+                <a href="#" class="nav-link" data-page="my-activities">我的报名</a>
+                <a href="#" class="nav-link" data-page="donations">爱心捐赠</a>
+                <a href="#" class="nav-link" data-page="points">积分兑换</a>
+                <a href="#" class="nav-link" data-page="profile">个人中心</a>
+                <button id="loginBtn" class="btn-login">登录</button>
+                <button id="registerBtn" class="btn-register">注册</button>
+                <div id="userInfo" class="user-info" style="display: none;">
+                    <img id="userAvatar" src="" alt="头像" class="avatar">
+                    <span id="userName"></span>
+                    <button id="logoutBtn" class="btn-logout">退出</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- 主要内容区 -->
+<main>
+    <div class="container">
+        <!-- 首页 -->
+        <section id="home" class="page active">
+            <!-- 轮播图 -->
+            <div class="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('img/banner1.jpg')">
+                        <div class="carousel-caption">
+                            <h3>社区植树活动</h3>
+                            <p>加入我们在中央公园种植100棵树！</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('img/banner9.jpg')">
+                        <div class="carousel-caption">
+                            <h3>海滩清洁日</h3>
+                            <p>帮助清理阳光海滩的塑料废物</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('img/banner3.jpg')">
+                        <div class="carousel-caption">
+                            <h3>回收工作坊</h3>
+                            <p>学习如何在家正确回收</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <div class="carousel-dot active" data-index="0"></div>
+                    <div class="carousel-dot" data-index="1"></div>
+                    <div class="carousel-dot" data-index="2"></div>
+                </div>
+            </div>
+
+            <!-- 快捷操作 -->
+            <h2>快捷操作</h2>
+            <div class="quick-actions">
+                <div class="action-card" data-page="activities">
+                    <i>🌱</i>
+                    <h3>环保活动</h3>
+                    <p>参与环保活动，获取积分</p>
+                </div>
+                <div class="action-card" data-page="donations">
+                    <i>❤️</i>
+                    <h3>爱心捐赠</h3>
+                    <p>支持环保项目，奉献爱心</p>
+                </div>
+                <div class="action-card" data-page="points">
+                    <i>⭐</i>
+                    <h3>积分兑换</h3>
+                    <p>使用积分兑换环保商品</p>
+                </div>
+                <div class="action-card" data-page="profile">
+                    <i>👤</i>
+                    <h3>个人中心</h3>
+                    <p>查看您的环保记录</p>
+                </div>
+            </div>
+
+            <!-- 最新活动 -->
+            <h2>最新活动</h2>
+            <div class="grid" id="homeActivities">
+                <!-- 活动卡片将通过JS动态生成 -->
+            </div>
+        </section>
+
+        <!-- 环保活动页面 -->
+        <section id="activities" class="page">
+            <h2>环保活动</h2>
+            <div id="adminActivityControls" style="display: none;">
+                <button class="btn btn-primary" id="addActivityBtn">发布新活动</button>
+            </div>
+
+            <!-- 管理员活动表单 -->
+            <div class="admin-form" id="activityForm" style="display: none;">
+                <h3 id="activityFormTitle">发布新活动</h3>
+                <form id="activityFormContent">
+                    <input type="hidden" id="activityId">
+                    <div class="form-group">
+                        <label for="activityTitle">活动标题</label>
+                        <input type="text" id="activityTitle" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="activityDescription">活动描述</label>
+                        <textarea id="activityDescription" class="form-control" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="activityLocation">活动地点</label>
+                        <input type="text" id="activityLocation" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="activityDate">活动日期</label>
+                        <input type="datetime-local" id="activityDate" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="activityMaxParticipants">最大参与人数</label>
+                        <input type="number" id="activityMaxParticipants" class="form-control" required min="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="activityPointsReward">积分奖励</label>
+                        <input type="number" id="activityPointsReward" class="form-control" required min="0" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="activityImage">活动照片</label>
+                        <input type="file" id="activityImage" class="form-control" accept="image/*">
+                        <small>支持JPG、PNG等图片格式，最大5MB</small>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="submit" class="btn btn-primary">保存</button>
+                        <button type="button" class="btn btn-secondary" id="cancelActivityBtn">取消</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="grid" id="activitiesList">
+                <!-- 活动列表将通过JS动态生成 -->
+            </div>
+        </section>
+
+        <!-- 我的报名页面 -->
+        <section id="my-activities" class="page">
+            <h2>我的报名</h2>
+            <div id="myRegistrations" class="registrations-list">
+                <!-- 报名记录将通过JS动态生成 -->
+            </div>
+        </section>
+
+        <!-- 爱心捐赠页面 -->
+        <section id="donations" class="page">
+            <h2>爱心捐赠</h2>
+            <div id="adminDonationControls" style="display: none;">
+                <button class="btn btn-primary" id="addDonationBtn">添加捐赠项目</button>
+            </div>
+
+            <!-- 管理员捐赠表单 -->
+            <div class="admin-form" id="donationForm" style="display: none;">
+                <h3 id="donationFormTitle">添加捐赠项目</h3>
+                <form id="donationFormContent">
+                    <input type="hidden" id="donationId">
+                    <div class="form-group">
+                        <label for="donationTitle">项目标题</label>
+                        <input type="text" id="donationTitle" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="donationDescription">项目描述</label>
+                        <textarea id="donationDescription" class="form-control" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="donationTargetAmount">目标金额</label>
+                        <input type="number" id="donationTargetAmount" class="form-control" required min="1">
+                    </div>
+                    <div class="form-buttons">
+                        <button type="submit" class="btn btn-primary">保存</button>
+                        <button type="button" class="btn btn-secondary" id="cancelDonationBtn">取消</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="grid" id="donationsList">
+                <!-- 捐赠项目列表将通过JS动态生成 -->
+            </div>
+        </section>
+
+        <!-- 积分兑换页面 -->
+        <section id="points" class="page">
+            <h2>积分兑换</h2>
+            <div class="points-display">
+                <p>当前积分</p>
+                <div class="points-value" id="currentPoints">0</div>
+                <p>积分来源：参与活动、爱心捐赠</p>
+            </div>
+            <div id="adminPointsControls" style="display: none;">
+                <button class="btn btn-primary" id="addProductBtn">添加商品</button>
+            </div>
+
+            <!-- 管理员商品表单 -->
+            <div class="admin-form" id="productForm" style="display: none;">
+                <h3 id="productFormTitle">添加商品</h3>
+                <form id="productFormContent">
+                    <input type="hidden" id="productId">
+                    <div class="form-group">
+                        <label for="productName">商品名称</label>
+                        <input type="text" id="productName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productDescription">商品描述</label>
+                        <textarea id="productDescription" class="form-control" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="productPoints">所需积分</label>
+                        <input type="number" id="productPoints" class="form-control" required min="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="productStock">库存数量</label>
+                        <input type="number" id="productStock" class="form-control" required min="0">
+                    </div>
+                    <div class="form-buttons">
+                        <button type="submit" class="btn btn-primary">保存</button>
+                        <button type="button" class="btn btn-secondary" id="cancelProductBtn">取消</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="grid" id="productsList">
+                <!-- 商品列表将通过JS动态生成 -->
+            </div>
+        </section>
+
+        <!-- 个人中心页面 -->
+        <section id="profile" class="page">
+            <h2>个人中心</h2>
+            <div class="tabs">
+                <div class="tab active" data-tab="info">个人信息</div>
+                <div class="tab" data-tab="activities">活动记录</div>
+                <div class="tab" data-tab="donations">捐赠记录</div>
+                <div class="tab" data-tab="points">积分记录</div>
+                <div class="tab" data-tab="exchanges">兑换记录</div>
+            </div>
+
+            <div class="tab-content active" id="infoTab">
+                <div class="card">
+                    <div class="card-header">个人信息</div>
+                    <div class="card-body">
+                        <form id="profileForm">
+                            <div class="form-group">
+                                <label for="profileUsername">用户名</label>
+                                <input type="text" id="profileUsername" class="form-control" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="profileEmail">邮箱</label>
+                                <input type="email" id="profileEmail" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="profileFullName">姓名</label>
+                                <input type="text" id="profileFullName" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="profilePhone">电话</label>
+                                <input type="tel" id="profilePhone" class="form-control">
+                            </div>
+                            <button type="submit" class="btn btn-primary">更新信息</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="activitiesTab">
+                <div class="card">
+                    <div class="card-header">活动记录</div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>活动名称</th>
+                                <th>日期</th>
+                                <th>地点</th>
+                                <th>状态</th>
+                            </tr>
+                            </thead>
+                            <tbody id="userActivitiesTable">
+                            <!-- 用户活动记录将通过JS动态生成 -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="donationsTab">
+                <div class="card">
+                    <div class="card-header">捐赠记录</div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>捐赠项目</th>
+                                <th>金额</th>
+                                <th>日期</th>
+                            </tr>
+                            </thead>
+                            <tbody id="userDonationsTable">
+                            <!-- 用户捐赠记录将通过JS动态生成 -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="pointsTab">
+                <div class="card">
+                    <div class="card-header">积分记录</div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>来源</th>
+                                <th>积分</th>
+                                <th>日期</th>
+                            </tr>
+                            </thead>
+                            <tbody id="userPointsTable">
+                            <!-- 用户积分记录将通过JS动态生成 -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="exchangesTab">
+                <div class="card">
+                    <div class="card-header">兑换记录</div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>商品名称</th>
+                                <th>所需积分</th>
+                                <th>兑换日期</th>
+                            </tr>
+                            </thead>
+                            <tbody id="userExchangesTable">
+                            <!-- 用户兑换记录将通过JS动态生成 -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<!-- 底部 -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于我们</h3>
+                <p>绿色行动是一个致力于环境保护和可持续发展的公益平台，我们通过组织环保活动和爱心捐赠项目，推动社会参与环境保护。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="#" data-page="home">首页</a></li>
+                    <li><a href="#" data-page="activities">环保活动</a></li>
+                    <li><a href="#" data-page="donations">爱心捐赠</a></li>
+                    <li><a href="#" data-page="points">积分兑换</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>个人信息</h3>
+                <ul>
+                    <li>专业班级:计算机2210班</li>
+                    <li>学号:22061026</li>
+                    <li>姓名:陈俏淇</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy;绿色行动环保公益平台</p>
+        </div>
+    </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
